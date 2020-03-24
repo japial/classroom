@@ -72,7 +72,7 @@ class Auth extends CI_Controller {
                 //if the login is successful
                 //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('/', 'refresh');
+                redirect('/home', 'refresh');
             } else {
                 // if the login was un-successful
                 // redirect them back to the login page
@@ -106,10 +106,9 @@ class Auth extends CI_Controller {
      */
     public function logout() {
         $this->data['title'] = "Logout";
-
+       
         // log the user out
         $this->ion_auth->logout();
-
         // redirect them to the login page
         redirect('auth/login', 'refresh');
     }
@@ -762,10 +761,9 @@ class Auth extends CI_Controller {
      * @return mixed
      */
     public function _render_page($view, $data = NULL, $returnhtml = FALSE) {//I think this makes more sense
-
         $viewdata = (empty($data)) ? $this->data : $data;
 
-        $view_html = $this->load->view($view, $viewdata, $returnhtml);
+        $view_html = renderView($view, $viewdata, $returnhtml);
 
         // This will return html on 3rd argument being true
         if ($returnhtml) {

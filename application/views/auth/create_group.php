@@ -1,3 +1,5 @@
+
+<?php include APPPATH.'views/layouts/header.php' ?>
 <h1><?php echo lang('create_group_heading');?></h1>
 <p><?php echo lang('create_group_subheading');?></p>
 
