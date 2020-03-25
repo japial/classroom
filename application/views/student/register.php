@@ -62,7 +62,9 @@
                 </div>
 
 
-                <p><?php echo form_submit('submit', 'Register', 'class="btn btn-success"'); ?></p>
+                <div class="form-group">
+                    <?php echo form_submit('submit', 'Register', 'class="btn btn-success"'); ?>
+                </div>
 
                 <?php echo form_close(); ?>
             </div>

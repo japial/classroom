@@ -8,10 +8,30 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->lang->load('auth');
+        $this->load->model('room_model');
     }
     
     public function index() {
-        renderView('welcome_message');
+        $data['userData'] =  $this->room_model->get_user_data();
+        $data['userSchool'] =  $this->room_model->get_user_school();
+        $data['members'] = $this->mySchoolMembers();
+        renderView('home', $data);
+    }
+    
+    public function profile($id = 0) {
+        $data['userData'] =  $this->room_model->get_user_data();
+        $data['profile'] =  $this->room_model->get_user_data($id);
+        $data['school'] =  $this->room_model->get_user_school($id);
+        renderView('profile', $data);
+    }
+    
+    private function mySchoolMembers() {
+        $members = array();
+        $schoolMembers = $this->room_model->get_school_members();
+        foreach ($schoolMembers as $value) {
+            $members[] = $value->user_id;
+        }
+        return $members;
     }
 
 }

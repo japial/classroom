@@ -1,5 +1,6 @@
 <div class="row">
-    <div class="col-md-6 mx-auto py-5">
+    <div class="col-md-6 mx-auto py-5 text-center">
         <h1>Welcome to ClassRoom!</h1>
+        <h6>Your Virtual Learning Platform</h6>
     </div>
 </div>

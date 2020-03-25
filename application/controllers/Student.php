@@ -53,18 +53,20 @@ class Student extends CI_Controller {
                 'username' => $this->input->post('email'),
             ];
         }
-        $userGroups = array(3);
-        if ($this->form_validation->run() === TRUE && $this->ion_auth->register($identity, $password, $email, $additional_data, $userGroups)) {
+       
+        if ($this->form_validation->run() === TRUE) {
             // check to see if we are creating the user
             // redirect them back to the admin page
-            $this->ion_auth->login($identity, $password);
-            $userData = $this->ion_auth->user()->row();
-            $this->db->insert('user_school', array(
-                    'user_id' => $userData->user_id, 
+            $userGroups = array(3);
+            $userID = $this->ion_auth->register($identity, $password, $email, $additional_data, $userGroups);
+            if($userID){
+                $this->db->insert('user_school', array(
+                    'user_id' => $userID, 
                     'school_id' => $this->input->post('school_id')
                 ));
+            }
             $this->session->set_flashdata('message', $this->ion_auth->messages());
-            redirect("/home", 'refresh');
+            redirect("/auth", 'refresh');
         } else {
             // display the create user form 
             // set the flash data error message if there is one
