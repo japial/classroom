@@ -36,6 +36,9 @@
                 </li>
             <?php } else { ?>
                 <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url() ?>student/register">Register</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<?= base_url() ?>auth/login">Login</a>
                 </li>
             <?php } ?>

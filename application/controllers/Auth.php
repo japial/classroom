@@ -32,7 +32,7 @@ class Auth extends CI_Controller {
             redirect('auth/login', 'refresh');
         } else if (!$this->ion_auth->is_admin()) { // remove this elseif if you want to enable this for non-admins
             // redirect them to the home page because they must be an administrator to view this
-            show_error('You must be an administrator to view this page.');
+            redirect('/home', 'refresh');
         } else {
             $this->data['title'] = $this->lang->line('index_heading');
 
@@ -88,12 +88,14 @@ class Auth extends CI_Controller {
                 'name' => 'identity',
                 'id' => 'identity',
                 'type' => 'text',
+                'class' => 'form-control',
                 'value' => $this->form_validation->set_value('identity'),
             ];
 
             $this->data['password'] = [
                 'name' => 'password',
                 'id' => 'password',
+                'class' => 'form-control',
                 'type' => 'password',
             ];
 
