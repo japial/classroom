@@ -10,11 +10,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <?php if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) { ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() ?>auth">Users</a>
-                </li>
-            <?php } ?>
+          
         </ul>
         <ul class="navbar-nav ml-auto">
             <?php
