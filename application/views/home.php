@@ -16,7 +16,7 @@
                 var chat_id = "<?php echo $userData->id; ?>";
                 var chat_name = "<?php echo $userData->first_name.' '.$userData->last_name; ?>";
                 var chat_link = "<?php echo base_url() . 'home/profile/' . $userData->id; ?>"; //Similarly populate it from session for user's profile link if exists
-                var chat_avatar = "<?php echo $userData->id; ?>"; //Similarly populate it from session for user's avatar src if exists
+                var chat_avatar = "<?php echo $userData->image; ?>"; //Similarly populate it from session for user's avatar src if exists
                 var chat_role = "<?php echo $userData->id; ?>"; //Similarly populate it from session for user's role if exists
                 var chat_friends = '<?php echo json_encode($members); ?>'; //Similarly populate it with user's friends' site user id's eg: 14,16,20,31
             </script>

@@ -31,6 +31,26 @@ class Home extends CI_Controller {
         $data['school'] = $this->room_model->get_user_school($id);
         renderView('profile', $data);
     }
+    
+    public function profile_photo()
+    {
+        $userData =  $this->room_model->get_user_data();
+        $imagePath = $this->file_upload();
+        if ($userData->image) {
+            if($userData->image != 'assets/profile/noimage.jpg' && file_exists($userData->image)){
+                 unlink($userData->image);
+            }
+            $this->db->update('user_image', 
+                array('image' => $imagePath), 
+                array('user_id' => $userData->id)
+           );
+        }else{
+            $this->db->insert('user_image', 
+                array('user_id' => $userData->id,'image' => $imagePath)
+            );
+        }
+        redirect('/home/profile');
+    }
 
     private function mySchoolMembers() {
         $members = array();
@@ -40,5 +60,23 @@ class Home extends CI_Controller {
         }
         return $members;
     }
+    
+    private function file_upload()
+    {
+        $config = array(
+            'upload_path' => "./assets/profile/",
+            'allowed_types' => "gif|jpg|png|jpeg",
+            'max_size' => "8048",
+            'encrypt_name' => TRUE
+        );
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('pphoto')) {
+            $data = $this->upload->data();
+            return 'assets/profile/' . $data['file_name'];
+        } else {
+            return 'assets/profile/noimage.jpg';
+        }
+    }
+
 
 }

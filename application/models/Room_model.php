@@ -20,8 +20,11 @@ class Room_model extends CI_Model{
             $authUser = $this->ion_auth->user()->row();
             $userID = $authUser->user_id;
         }
-        $this->db->select("id, username, email, first_name, last_name, company, phone, active, ip_address");
+        $this->db->select("users.id, users.username, users.email, "
+                . "users.first_name, users.last_name, users.company, "
+                . "users.phone, users.active, users.ip_address, user_image.image");
         $this->db->from('users');
+        $this->db->join('user_image', 'user_image.user_id=users.id', 'left');
         $this->db->where('users.id', $userID);
         return $this->db->get()->row();
     }
