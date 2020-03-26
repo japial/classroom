@@ -22,9 +22,11 @@ class Room_model extends CI_Model{
         }
         $this->db->select("users.id, users.username, users.email, "
                 . "users.first_name, users.last_name, users.company, "
-                . "users.phone, users.active, users.ip_address, user_image.image");
+                . "users.phone, users.active, users.ip_address, user_image.image, groups.name as role");
         $this->db->from('users');
         $this->db->join('user_image', 'user_image.user_id=users.id', 'left');
+        $this->db->join('users_groups', 'users_groups.user_id=users.id', 'left');
+        $this->db->join('groups', 'groups.id=users_groups.group_id', 'left');
         $this->db->where('users.id', $userID);
         return $this->db->get()->row();
     }

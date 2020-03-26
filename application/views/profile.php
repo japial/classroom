@@ -69,6 +69,12 @@
                                     <strong><?= $profile->company != '' ? $profile->company : 'Not Available' ?></strong>
                                 </td>
                             </tr>
+							<tr>
+                                <td>User Role</td>
+                                <td>
+                                    <strong><?= $profile->role ?></strong>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
