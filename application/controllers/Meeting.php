@@ -2,12 +2,13 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use BigBlueButton\BigBlueButton;
+use BigBlueButton\Parameters\CreateMeetingParameters;
+
 class Meeting extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->database();
-        $this->lang->load('auth');
         $this->load->model('user_model');
         $this->load->model('meeting_model');
         if (!$this->ion_auth->logged_in()) {

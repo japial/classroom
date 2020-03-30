@@ -25,6 +25,7 @@ class Home extends CI_Controller {
                 $data['meetings'] = $this->meeting_model->get_teacher_meetings($data['userData']->id);
                 renderView('teacher/home', $data);
             }else{
+                $data['meetings'] = $this->meeting_model->get_school_meetings($data['userSchool']->school_id);
                 renderView('student/home', $data);
             }
         }
@@ -57,15 +58,6 @@ class Home extends CI_Controller {
         redirect('/home/profile');
     }
 
-    private function mySchoolMembers() {
-        $members = array();
-        $schoolMembers = $this->user_model->get_school_members();
-        foreach ($schoolMembers as $value) {
-            $members[] = $value->user_id;
-        }
-        return $members;
-    }
-    
     private function file_upload()
     {
         $config = array(
