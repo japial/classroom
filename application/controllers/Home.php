@@ -8,7 +8,8 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->lang->load('auth');
-        $this->load->model('room_model');
+        $this->load->model('user_model');
+        $this->load->model('meeting_model');
         if (!$this->ion_auth->logged_in()) {
             redirect('auth');
         }
@@ -18,23 +19,27 @@ class Home extends CI_Controller {
         if ($this->ion_auth->is_admin()) {
             redirect('auth/index');
         } else {
-            $data['userData'] = $this->room_model->get_user_data();
-            $data['userSchool'] = $this->room_model->get_user_school();
-            $data['members'] = $this->mySchoolMembers();
-            renderView('home', $data);
+            $data['userData'] = $this->user_model->get_user_data();
+            $data['userSchool'] = $this->user_model->get_user_school();
+            if($data['userData']->role == 'teacher'){
+                $data['meetings'] = $this->meeting_model->get_teacher_meetings($data['userData']->id);
+                renderView('teacher/home', $data);
+            }else{
+                renderView('student/home', $data);
+            }
         }
     }
 
     public function profile($id = 0) {
-        $data['userData'] = $this->room_model->get_user_data();
-        $data['profile'] = $this->room_model->get_user_data($id);
-        $data['school'] = $this->room_model->get_user_school($id);
+        $data['userData'] = $this->user_model->get_user_data();
+        $data['profile'] = $this->user_model->get_user_data($id);
+        $data['school'] = $this->user_model->get_user_school($id);
         renderView('profile', $data);
     }
     
     public function profile_photo()
     {
-        $userData =  $this->room_model->get_user_data();
+        $userData =  $this->user_model->get_user_data();
         $imagePath = $this->file_upload();
         if ($userData->image) {
             if($userData->image != 'assets/profile/noimage.jpg' && file_exists($userData->image)){
@@ -54,7 +59,7 @@ class Home extends CI_Controller {
 
     private function mySchoolMembers() {
         $members = array();
-        $schoolMembers = $this->room_model->get_school_members();
+        $schoolMembers = $this->user_model->get_school_members();
         foreach ($schoolMembers as $value) {
             $members[] = $value->user_id;
         }

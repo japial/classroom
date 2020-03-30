@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author jahan
  */
-class Room_model extends CI_Model{
+class User_model extends CI_Model{
     
     public function get_user_data($id = 0){
         if($id){
