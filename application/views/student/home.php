@@ -24,11 +24,7 @@
                         <tr>
                             <td class="text-center"><?= $meeting->name ?></td>
                             <td class="text-center">
-                                <form action="<?= base_url().'bigblue/join' ?>" method="post">
-                                    <input type="hidden" name="meeting_id" value="<?= $meeting->id ?>">
-                                    <input type="hidden" name="attendee" value="<?= $meeting->attendee ?>">
-                                    <button class="btn btn-success" type="submit">Join</button>
-                                </form>
+                                <a href="<?= base_url().'bigblue/join/'.$meeting->id ?>" class="btn btn-success">Join</a>
                             </td>
                         </tr>
                         <?php } ?>

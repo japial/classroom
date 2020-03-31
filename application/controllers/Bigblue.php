@@ -22,21 +22,17 @@ class Bigblue extends CI_Controller {
         }
     }
     
-    public function create($meeting = array())
+    public function create($id)
     {
-        $meetingID = $this->input->post('meeting_id');
-        $meetingName = $this->input->post('meeting_name');
-        $attendee_password = $this->input->post('moderator');
-        $moderator_password = $this->input->post('attendee');
+        $meeting = $this->meeting_model->get_meeting_data($id);
         $this->setConfigValue();
         try {
             $bbb = new BigBlueButton();
    
-            $createMeetingParams = new CreateMeetingParameters($meetingID, $meetingName);
-            $createMeetingParams->setAttendeePassword($attendee_password);
-            $createMeetingParams->setModeratorPassword($moderator_password);
-            $createMeetingParams->setDuration(40);
-            $createMeetingParams->setLogoutUrl('http://classroom.local');
+            $createMeetingParams = new CreateMeetingParameters($meeting->mid, $meeting->name);
+            $createMeetingParams->setAttendeePassword($meeting->attendee);
+            $createMeetingParams->setModeratorPassword($meeting->moderator);
+            $createMeetingParams->setLogoutUrl(base_url());
             $createMeetingParams->setRecord(true);
             $createMeetingParams->setAllowStartStopRecording(true);
             $createMeetingParams->setAutoStartRecording(true);
@@ -45,7 +41,7 @@ class Bigblue extends CI_Controller {
             if ($response->getReturnCode() == 'FAILED') {
                 renderView('meeting/error',array('error' => 'responseFailed'));
             } else {
-                $joinUrl = $this->joinTeacher($meetingID, $moderator_password);
+                $joinUrl = $this->getJoinUrl($meeting->mid, $meeting->moderator);
                 redirect($joinUrl);
             }
         } catch (\Exception $e) {
@@ -53,30 +49,24 @@ class Bigblue extends CI_Controller {
         }
     }
 
-    public function join() {
+    public function join($id) {
         $this->setConfigValue(1);
-        $bbb = new BigBlueButton();
-        $userData = $this->user_model->get_user_data();
-        $name = $userData->first_name.' '.$userData->last_name;
-        $meetingID = $this->input->post('meeting');
-        $password = $this->input->post('password');
-        $joinMeetingParams = new JoinMeetingParameters($meetingID, $name, $password);
-        $joinMeetingParams->setRedirect(true);
-        $joinMeetingParams->setJoinViaHtml5(true);
-        $joinUrl = $bbb->getJoinMeetingURL($joinMeetingParams);
+        $meeting = $this->meeting_model->get_meeting_data($id);
+        $joinUrl = $this->getJoinUrl($meeting->mid, $meeting->attendee);
         redirect($joinUrl);
     }
     
-    private function joinTeacher($meetingID, $password) {
+    private function getJoinUrl($meetingID, $password){
         $bbb = new BigBlueButton();
         $userData = $this->user_model->get_user_data();
         $name = $userData->first_name.' '.$userData->last_name;
         $joinMeetingParams = new JoinMeetingParameters($meetingID, $name, $password);
         $joinMeetingParams->setRedirect(true);
+        $joinMeetingParams->setJoinViaHtml5(true);
         $url = $bbb->getJoinMeetingURL($joinMeetingParams);
         return $url;
     }
-    
+
     private function setConfigValue($html = 0) {
         $securitySalt = '2sqX6A7LiUNRP2ndgE5PPnM7ksUNJM7CxUiAxul1LU';
         if($html){

@@ -46,6 +46,7 @@ class Meeting extends CI_Controller {
         $userData = $this->user_model->get_user_data();
         $this->db->insert('meetings', array(
             'name' => $this->input->post('name'),
+            'mid' => rand(1000,9999999999),
             'moderator' => $this->input->post('moderator'),
             'attendee' => $this->input->post('attendee'),
             'user_id' => $userData->id

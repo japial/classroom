@@ -36,13 +36,7 @@
                             <td class="text-center"><?= $meeting->moderator ?></td>
                             <td class="text-center"><?= $meeting->attendee ?></td>
                             <td class="text-center">
-                                <form action="<?= base_url().'bigblue/create' ?>" method="post">
-                                    <input type="hidden" name="meeting_id" value="<?= $meeting->id ?>">
-                                    <input type="hidden" name="meeting_name" value="<?= $meeting->name ?>">
-                                    <input type="hidden" name="moderator" value="<?= $meeting->moderator ?>">
-                                    <input type="hidden" name="attendee" value="<?= $meeting->attendee ?>">
-                                    <button class="btn btn-success" type="submit">Join</button>
-                                </form>
+                                <a href="<?= base_url().'bigblue/create/'. $meeting->id ?>" class="btn btn-success">Join</a>
                             </td>
                             <td class="text-center">
                                 <a href="<?= base_url().'meeting/edit/'.$meeting->id ?>" class="btn btn-warning">Edit</a>
