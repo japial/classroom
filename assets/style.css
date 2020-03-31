@@ -7,4 +7,6 @@ and open the template in the editor.
     Created on : Mar 24, 2020, 9:31:25 PM
     Author     : jahan
 */
-
+#header_area {
+    padding: 12px 0px 10px 0px;
+}

@@ -1,0 +1,208 @@
+p{
+	margin: 0px;
+	padding: 0px;
+}
+h1,h2,h3,h4,h5,h6{
+	margin: 0px;
+	padding: 0px;
+}
+ul{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background: #EEF3FA;
+	font-family: 'Roboto', sans-serif;
+}
+.main_area{
+	padding: 0px
+}
+.container{
+	background: #FFFFFF;
+}
+/* header css start */
+#header_area{
+	box-shadow: 0px 4px 44px 0px rgba(0, 0, 0, 0.14);
+	padding: 12px 0px 0px 0px;
+}
+.header_logo{}
+.header_logo img{
+    width: 35%;
+    float: right;
+}
+.header_menu nav ul{
+	list-style: none;
+	text-align: center;
+	margin-top: -4px;
+}
+.header_menu nav ul li{
+	display: inline-block;
+}
+.header_menu nav ul li a{
+	padding: 10px 16px 10px 16px !important;
+    display: table;
+    font-size: 15px;
+    text-decoration: none;
+    color: #29363B;
+}
+.logout_button{
+	margin-top: -4px;
+}
+.logout_button p img{
+	width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+.logout_button p span{
+	background: #C62530;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-left: 6px;
+    display: inline-block;
+}
+.logout_button span:hover{
+	cursor: pointer;
+} 
+/* header css end*/
+#registration_panel{
+	padding: 55px 0px 0px 0px;
+	margin-left: 24px;
+}
+.l_register_header{
+    margin-bottom: 30px;
+}
+.l_register_header img{
+	width: 28%;
+}
+.form_control{
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+.level{
+	border-right: 1px solid #ddd;
+}
+.level img{
+	padding-top: 16%;
+    width: 33%;
+}
+.l_class img{
+	padding-top: 6px;
+}
+.registration_form_area input,.registration_form_area select{
+    padding: 8px 13px;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 14px;
+}
+#login_panel input{
+	padding: 12px 13px;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 14px;
+}
+#login_panel .level img {
+    padding-top: 24%;
+    width: 40%;
+}
+input:focus{
+	outline-color: #ccc3c3;
+}
+.l_school{
+	color: #929699;
+}
+.registration_form_area select option{
+	color: #000;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #929699;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #929699;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #929699;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #929699;
+}
+.banner_area{
+	margin-top: 16px;
+}
+.l_banner{
+	width: 100%;
+}
+.l_button{
+    background: #C62530;
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    font-size: 16px;
+    margin-top: 6px;
+}
+.l_button:hover{
+	cursor: pointer;
+}
+.l_login_button{
+	background: #C62530;
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    font-size: 16px;
+    margin-top: 3px;
+}
+.l_login_button:hover{
+	cursor: pointer;
+	background-color: #29363B; 
+}
+.l_already p{
+	color: #929699;
+    font-size: 16px;
+    font-weight: 400;
+}
+.l_already{
+	margin-top: 15px;
+}
+.l_already span{
+	font-weight: 900;
+    color: #C62530;
+    margin-left: 11px;
+}
+.l_already span:hover{
+	color: #29363B;
+	cursor: pointer;
+}
+#login_panel{
+	padding: 110px 0px 0px 0px;
+    margin-left: 24px;
+}
+.l_forgot{
+	color: #929699;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 15px;
+    float: left;
+}
+.l_register p{
+	color: #929699;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 25px;
+}
+.l_register{
+	margin-top: 10px;
+}
+.l_register span{
+	font-weight: 900;
+    color: #C62530;
+    margin-left: 11px;
+}
+.l_register span:hover{
+	color: #29363B;
+	cursor: pointer;
+}

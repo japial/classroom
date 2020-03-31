@@ -1,40 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <a class="navbar-brand" href="<?= base_url() ?>">ClassLive</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-           <?php if ($this->ion_auth->logged_in()) { ?>
-           <li class="nav-item active">
-                 <a class="nav-link" href="<?= base_url() ?>home">Home</a>
-            </li>
-            <?php } ?>
-        </ul>
-        <ul class="navbar-nav ml-auto">
+<div id="header_area">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="header_logo">
+                <a href="<?= base_url() ?>">
+                    <img src="<?= base_url() ?>assets/theme/img/logo.png">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="header_menu">
+                <nav>
+                    <ul>
+                        <?php if ($this->ion_auth->logged_in()) { ?>
+                            <li><a href="<?= base_url() ?>home">Home</a></li>
+                            <li><a href="<?= base_url() . 'home/profile/' ?>">Profile</a></li>
+                        <?php } ?>
+                           
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="col-md-3">
             <?php
             if ($this->ion_auth->logged_in()) {
                 $userinfo = $this->ion_auth->user()->row();
+                $userImage = $this->db->get_where('user_image', array('user_id' => $userinfo->user_id))->row();
                 ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?= $userinfo->username ?>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="<?= base_url() . 'home/profile/'?>">Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?= base_url() ?>auth/logout">Logout</a>
-                    </div>
-                </li>
+
+                <div class="logout_button">
+                    <p>
+                        <?php if ($userImage) { ?>
+                            <img src="<?= base_url() . $userImage->image ?>" alt="<?= $userinfo->username ?>" />
+                        <?php } else { ?>
+                            <img src="<?= base_url() . 'assets/profile/noimage.jpg' ?>" alt="<?= $userinfo->username ?>" />
+                        <?php } ?>
+                        <a href="<?= base_url() ?>auth/logout">
+                            <span>Logout</span>
+                        </a>
+                    </p>
+                </div>
             <?php } else { ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() ?>student/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() ?>auth/login">Login</a>
-                </li>
+                <div class="logout_button">
+                    <a href="<?= base_url() ?>auth/logout">
+                        <p><span>Login</span></p>
+                    </a>
+                </div>
             <?php } ?>
-        </ul>
+        </div>
     </div>
-</nav>
+</div>

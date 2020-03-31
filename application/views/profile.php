@@ -22,9 +22,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <?php if($profile->image){ ?>
-                                <img src="<?= base_url().$profile->image ?>" alt="$profile->first_name" class="img-thumbnail w-100">
+                                <img src="<?= base_url().$profile->image ?>" alt="<?= $profile->first_name ?>" class="img-thumbnail w-100">
                                 <?php }else{ ?>
-                                <img src="<?= base_url().'assets/profile/noimage.jpg'?>" alt="$profile->first_name" class="img-thumbnail w-100">
+                                <img src="<?= base_url().'assets/profile/noimage.jpg'?>" alt="<?= $profile->first_name ?>" class="img-thumbnail w-100">
                                 <?php } ?>
                             </div>
                             <div class="card-footer">

@@ -76,56 +76,56 @@ class Student extends CI_Controller {
                 'name' => 'first_name',
                 'id' => 'first_name',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'First Name',
                 'value' => $this->form_validation->set_value('first_name'),
             ];
             $this->data['last_name'] = [
                 'name' => 'last_name',
                 'id' => 'last_name',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'Last Name',
                 'value' => $this->form_validation->set_value('last_name'),
             ];
             $this->data['identity'] = [
                 'name' => 'identity',
                 'id' => 'identity',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'Username',
                 'value' => $this->form_validation->set_value('identity'),
             ];
             $this->data['email'] = [
                 'name' => 'email',
                 'id' => 'email',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'Email',
                 'value' => $this->form_validation->set_value('email'),
             ];
             $this->data['company'] = [
                 'name' => 'company',
                 'id' => 'company',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'Class/Department',
                 'value' => $this->form_validation->set_value('company'),
             ];
             $this->data['phone'] = [
                 'name' => 'phone',
                 'id' => 'phone',
                 'type' => 'text',
-                'class' => 'form-control',
+                'placeholder' => 'Phone Number',
                 'value' => $this->form_validation->set_value('phone'),
             ];
             $this->data['password'] = [
                 'name' => 'password',
                 'id' => 'password',
                 'type' => 'password',
-                'class' => 'form-control',
+                'placeholder' => 'Password',
                 'value' => $this->form_validation->set_value('password'),
             ];
             $this->data['password_confirm'] = [
                 'name' => 'password_confirm',
                 'id' => 'password_confirm',
                 'type' => 'password',
-                'class' => 'form-control',
+                'placeholder' => 'Confirm Password',
                 'value' => $this->form_validation->set_value('password_confirm'),
             ];
             $this->data['schools'] = $this->db->get('schools')->result();
